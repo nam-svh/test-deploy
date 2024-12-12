@@ -25,8 +25,8 @@ jobs:
       - name: Install Mintlify CLI
         run: npm install -g mintlify
       
-      - name: Build Documentation
-        run: mintlify build
+      - name: Generate Documentation
+        run: mintlify dev
       
       - name: Setup Pages
         uses: actions/configure-pages@v3
@@ -34,7 +34,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./out
+          path: ./.mint
 
   deploy:
     environment:
