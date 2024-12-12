@@ -1,4 +1,32 @@
-import React from 'react';
+const fs = require('fs');
+const path = require('path');
+
+const pages = [
+  'introduction',
+  'quickstart', 
+  'development',
+  'essentials/markdown',
+  'essentials/code',
+  'essentials/images',
+  'essentials/settings',
+  'essentials/navigation',
+  'essentials/reusable-snippets',
+  'api-reference/introduction',
+  'api-reference/endpoint/get',
+  'api-reference/endpoint/create',
+  'api-reference/endpoint/delete'
+];
+
+function createPage(pagePath) {
+  const fullPath = path.join(__dirname, '..', 'pages', `${pagePath}.js`);
+  const dirPath = path.dirname(fullPath);
+  
+  // Tạo thư mục nếu chưa tồn tại
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+
+  const pageContent = `import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import fs from 'fs';
@@ -18,7 +46,7 @@ const Card = ({ title, icon, href, children }) => (
 );
 
 const CardGroup = ({ cols = 2, children }) => (
-  <div className={`grid grid-cols-${cols} gap-4 my-4`}>
+  <div className={\`grid grid-cols-\${cols} gap-4 my-4\`}>
     {children}
   </div>
 );
@@ -35,7 +63,7 @@ const mdxComponents = {
       width={800} 
       height={400} 
       alt={props.alt || 'Hero Image'} 
-      className={`w-full h-auto ${props.className}`} 
+      className={\`w-full h-auto \${props.className}\`} 
     />
   ),
   Card,
@@ -44,7 +72,7 @@ const mdxComponents = {
 
 export default async function Page() {
   // Read MDX content
-  const pagePath = path.join(process.cwd(), `${pagePath}.mdx`);
+  const pagePath = path.join(process.cwd(), \`\${pagePath}.mdx\`);
   const pageContent = fs.readFileSync(pagePath, 'utf8');
 
   // Compile MDX
@@ -61,4 +89,11 @@ export default async function Page() {
       </MDXProvider>
     </div>
   );
+}`;
+
+  fs.writeFileSync(fullPath, pageContent);
+  console.log(`Created page: ${pagePath}.js`);
 }
+
+pages.forEach(createPage);
+console.log('All pages generated successfully!');
