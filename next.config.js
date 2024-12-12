@@ -4,7 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/test-deploy',
+  basePath: process.env.BASE_PATH || '/test-deploy'
 }
 
 module.exports = nextConfig
