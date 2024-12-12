@@ -1,0 +1,11 @@
+/* Hide Powered by Mintlify */
+footer .flex.items-center.justify-between:has(a[href*="mintlify"]) {
+  display: none !important;
+}
+
+/* Fallback for browsers not supporting :has() */
+footer .flex.items-center.justify-between {
+  & a[href*="mintlify"] {
+    display: none !important;
+  }
+}
