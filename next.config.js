@@ -4,7 +4,14 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.BASE_PATH || '/test-deploy'
+  basePath: '/test-deploy',
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.mdx?$/,
+      use: ['babel-loader', '@mdx-js/loader']
+    });
+    return config;
+  }
 }
 
 module.exports = nextConfig
