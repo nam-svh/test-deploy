@@ -7,9 +7,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "@mintlify/cli": "latest",
     "next": "latest",
-    "react": "latest", 
-    "react-dom": "latest",
-    "@mintlify/cli": "latest"
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16"
   }
 }

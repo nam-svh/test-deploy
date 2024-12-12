@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Hide Powered by Mintlify */
 footer .flex.items-center.justify-between:has(a[href*="mintlify"]) {
   display: none !important;
